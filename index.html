@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stev Lin — Portfolio</title>
 <meta name="description" content="Stev Lin (林雅涵): turning measurement and scientific evidence into product decisions. CV and portfolio documents.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230d1117%27/%3E%3Cpath d=%27M7 22l5-12 5 8 3-5 5 9z%27 fill=%27%235fd0c5%27/%3E%3C/svg%3E">
 <style>
   :root {
     --bg: #0d1117;
@@ -31,7 +32,7 @@
 
   .langbar { display: flex; justify-content: flex-end; padding-top: 18px; }
   .lang-btn { font: inherit; font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
-  .lang-btn:hover, .lang-btn:focus-visible { border-color: var(--accent); outline: none; }
+  .lang-btn:hover { border-color: var(--accent); }
 
   header.top { padding: 40px 0 40px; }
   .eyebrow { color: var(--accent); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
@@ -52,12 +53,13 @@
   .links { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
   .btn { display: inline-block; text-decoration: none; font-size: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); }
   .btn.primary { background: var(--accent); border-color: var(--accent); color: #07201d; font-weight: 600; }
-  .btn:hover, .btn:focus-visible { border-color: var(--accent); outline: none; }
+  .btn:hover { border-color: var(--accent); }
+  .btn:focus-visible, .lang-btn:focus-visible, .social a:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
   .note { color: var(--muted); font-size: 14px; margin: 18px 0 0; }
   footer { padding: 36px 0 64px; border-top: 1px solid var(--line); }
   .social { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
   .social a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
-  .social a:hover, .social a:focus-visible { border-color: var(--accent); outline: none; }
+  .social a:hover { border-color: var(--accent); }
   .social svg { width: 20px; height: 20px; fill: currentColor; }
   .legal { color: var(--muted); font-size: 13px; margin: 22px 0 0; }
 </style>
@@ -71,6 +73,7 @@
     </button>
   </div>
 
+  <main>
   <header class="top">
     <p class="eyebrow"><span class="t-en">Portfolio</span><span class="t-zh">作品集</span></p>
     <h1>Stev Lin</h1>
@@ -109,8 +112,8 @@
 
       <article class="card">
         <span class="tag">
-          <span class="t-en">Product requirements · 11 pp · written in Traditional Chinese</span>
-          <span class="t-zh">產品需求文件 · 11 頁</span>
+          <span class="t-en">Product requirements · 12 pp · written in Traditional Chinese</span>
+          <span class="t-zh">產品需求文件 · 12 頁</span>
         </span>
         <h3>
           <span class="t-en">From Single Report to Trackable Decision System</span>
@@ -126,14 +129,14 @@
         </p>
         <div class="links">
           <a class="btn primary" href="docs/Stev_Lin_PRD_MSL_Report_v2.pdf">PDF</a>
-          <a class="btn" href="docs/PRD_MSL_Report_v2.md">Markdown</a>
+          <a class="btn" href="docs/PRD_MSL_Report_v2.md" download>Markdown</a>
         </div>
       </article>
 
       <article class="card">
         <span class="tag">
-          <span class="t-en">Validation protocol · 13 pp · written in Traditional Chinese</span>
-          <span class="t-zh">驗證計畫書 · 13 頁</span>
+          <span class="t-en">Validation protocol · 14 pp · written in Traditional Chinese</span>
+          <span class="t-zh">驗證計畫書 · 14 頁</span>
         </span>
         <h3>
           <span class="t-en">Test–Retest Reliability and Minimal Detectable Change</span>
@@ -149,7 +152,7 @@
         </p>
         <div class="links">
           <a class="btn primary" href="docs/Stev_Lin_Validation_Protocol_MSL.pdf">PDF</a>
-          <a class="btn" href="docs/Validation_Protocol_MSL_Reliability.md">Markdown</a>
+          <a class="btn" href="docs/Validation_Protocol_MSL_Reliability.md" download>Markdown</a>
         </div>
       </article>
 
@@ -159,6 +162,7 @@
       <span class="t-zh">兩份文件互為一組：驗證計畫書是 PRD 第一階段估計的執行計畫。兩者皆為個人作品集範例，以提案形式撰寫，並非公司核准之計畫，也不含任何客戶或受試者資訊。驗證計畫書尚未送交任何倫理審查委員會。</span>
     </p>
   </section>
+  </main>
 
   <footer>
     <h2><span class="t-en">Elsewhere</span><span class="t-zh">其他連結</span></h2>
@@ -184,6 +188,9 @@
 (function () {
   var root = document.documentElement;
   var TITLES = { en: 'Stev Lin — Portfolio', zh: '林雅涵 (Stev Lin) — 作品集' };
+  var DESCS = { en: 'Stev Lin (林雅涵): turning measurement and scientific evidence into product decisions. CV and portfolio documents.',
+                zh: '林雅涵 (Stev Lin)：把量測與科學證據轉化為產品決策。履歷與作品集文件。' };
+  var LABELS = { en: 'Switch to Chinese (中文)', zh: '切換為英文 (English)' };
 
   // 優先序：網址 ?lang= → 先前選擇 → 瀏覽器語言；任何儲存失敗都退回英文
   function pick() {
@@ -202,6 +209,8 @@
     root.setAttribute('data-lang', lang);
     root.lang = lang === 'zh' ? 'zh-Hant' : 'en';
     document.title = TITLES[lang];
+    document.querySelector('meta[name="description"]').setAttribute('content', DESCS[lang]);
+    document.getElementById('langBtn').setAttribute('aria-label', LABELS[lang]);
     var links = document.querySelectorAll('[data-href-en]');
     for (var i = 0; i < links.length; i++) {
       links[i].setAttribute('href', links[i].getAttribute('data-href-' + lang));

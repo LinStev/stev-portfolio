@@ -5,41 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stev Lin (林雅涵) — CV</title>
 <style>
-  /* Themeable tokens (#1837): overridable via a style block, which
-     the PDF pipeline injects as a later :root block. Defaults below reproduce the
-     original hardcoded values, so a profile without a `style:` block is unchanged. */
+  
   :root {
     --accent-color: hsl(187 74% 32%);
     --secondary-color: hsl(270, 70%, 45%);
     --font-family: "Liberation Sans", 'Helvetica Neue', Arial, 'DejaVu Sans', sans-serif;
     --font-size: 11px;
-    /* Matches generate-pdf.mjs's PDF_PAGE_MARGIN — the actual PDF page margin
-       comes from the later @page rule injectPrintPageCss appends (which reads
-       this same variable), so this default must match it exactly. */
+    
     --page-margin: 0.6in;
   }
   @page { margin: var(--page-margin); }
-
-  /* ATS-safe typography (#font-extraction fix):
-     The bundled variable woff2 fonts (Space Grotesk / DM Sans) render with
-     glyph advances that make PDF text extractors inject spurious spaces inside
-     words (e.g. "SUM M ARY", "Germ any") — which corrupts ATS keyword parsing.
-     This template's job is clean machine-readable parsing, so we use a standard
-     static system sans stack instead. Verified clean via pypdf text extraction.
-     The lang="ja" rules reuse this Latin base stack (with a CJK fallback added);
-     the lang="ar" rules below intentionally define their own Arabic stack. */
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    /* Disable fi/fl/ffi ligatures. Headless Chromium substitutes these letter
-       pairs with the Unicode glyphs U+FB01/FB02/FB03 at PDF layout time, and PDF
-       text extractors (what ATS systems read) decode them back to those
-       codepoints, so "verification" becomes "veriﬁcation" and a literal keyword
-       search misses it. Setting this on every element covers headings and
-       competency tags too. Required ligatures (rlig) stay on, so Arabic shaping
-       is unaffected. */
+    
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
   }
@@ -57,7 +38,7 @@
     background: #ffffff;
     padding: 0;
     margin: 0;
-    /* Disable ligatures here as well; see the * rule above. */
+    
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0, "clig" 0, "dlig" 0;
   }
@@ -69,7 +50,6 @@
     padding: 2px 0;
   }
 
-  /* === HEADER === */
   .header {
     margin-bottom: 20px;
   }
@@ -110,12 +90,6 @@
     color: #ccc;
   }
 
-  /* === OPTIONAL PROFILE PHOTO (opt-in, DACH/European markets — #264) ===
-     Off by default: with no candidate.photo the  slot is empty, no
-     <img> is emitted, and the layout is byte-identical to a photoless CV.
-     When opted in (a candidate photo is configured) the photo floats into
-     the top corner and the header/summary text wraps beside it. Photos are
-     penalized by US/UK/many-market ATS, so this is never on by default. */
   .cv-photo {
     float: right;
     width: 80px;
@@ -130,7 +104,6 @@
   .cv-photo--circle { border-radius: 50%; aspect-ratio: 1; height: 80px; }
   .cv-photo--square { border-radius: 0; aspect-ratio: 1; height: 80px; }
 
-  /* === SECTIONS === */
   .section {
     margin-bottom: 18px;
   }
@@ -148,7 +121,6 @@
     line-height: 1.2;
   }
 
-  /* === PROFESSIONAL SUMMARY === */
   .summary-text {
     font-size: var(--font-size);
     line-height: 1.7;
@@ -160,12 +132,10 @@
     color: #1a1a1a;
   }
 
-  /* Links must never break across lines */
   a {
     white-space: nowrap;
   }
 
-  /* === CORE COMPETENCIES === */
   .competencies-grid {
     display: flex;
     flex-wrap: wrap;
@@ -183,7 +153,6 @@
     border: 1px solid hsl(187, 40%, 88%);
   }
 
-  /* === WORK EXPERIENCE === */
   .job {
     margin-bottom: 14px;
   }
@@ -237,7 +206,6 @@
     font-weight: 600;
   }
 
-  /* === PROJECTS === */
   .project {
     margin-bottom: 12px;
   }
@@ -281,7 +249,6 @@
     margin-top: 3px;
   }
 
-  /* === EDUCATION === */
   .edu-item {
     margin-bottom: 8px;
   }
@@ -322,7 +289,6 @@
     line-height: 1.5;
   }
 
-  /* === CERTIFICATIONS === */
   .cert-table {
     display: table;
     width: 100%;
@@ -357,10 +323,6 @@
     width: 44px;
   }
 
-  /* === AWARDS === */
-  /* Same table model as certifications (title / issuer / year on one baseline),
-     under its own class names so a template pack can restyle awards without
-     dragging certifications along. */
   .award-table {
     display: table;
     width: 100%;
@@ -395,13 +357,11 @@
     width: 44px;
   }
 
-  /* === INTERESTS === */
   .interests-line {
     font-size: 10.5px;
     color: #444;
   }
 
-  /* === SKILLS === */
   .skills-grid {
     display: flex;
     flex-wrap: wrap;
@@ -419,30 +379,17 @@
     font-size: 10.5px;
   }
 
-  /* === PRINT === */
   @media print {
     body {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
-    /* Keep a small right gutter for the print box. Right-aligned content
-       (job periods, education years) right-aligns to the content-box edge,
-       and the rightmost glyph's side bearing can spill ~1px past it and get
-       clipped by Chromium's print clip. A plain `.page` padding is reset to 0
-       here for print, which is why padding set outside @media print has no
-       effect; restoring a right gutter inside the print rule fixes it without
-       re-centering the page or hard-coding a per-format max-width. See #1341. */
     .page {
       padding: 0 0.18in 0 0;
     }
   }
 
-  /* === PAGE BREAK CONTROL === */
-  /* Only avoid breaking small atomic units (a cert row, an education line, the
-     header, a single competency or skill).  Sections and multi-bullet roles are
-     allowed to flow across a page boundary so content packs tight instead of
-     jumping wholesale and leaving large bottom gaps. */
   .header,
   .edu-item,
   .cert-item,
@@ -452,8 +399,6 @@
     page-break-inside: avoid;
   }
 
-  /* Keep a heading attached to the content that follows it, so headings are not
-     orphaned at the bottom of a page. */
   .section-title,
   .job-company,
   .job-role,
@@ -464,16 +409,11 @@
     page-break-after: avoid;
   }
 
-  /* Keep a project's tech line attached to the description above it.  A project
-     may still split across pages, but not at the one opportunity that strands a
-     bare "Python | <link>" line at the top of the next page with no
-     title or description to identify it. */
   .project-tech {
     break-before: avoid;
     page-break-before: avoid;
   }
 
-  /* === RTL (Arabic) Support === */
   html[lang="ar"] body {
     direction: rtl;
     text-align: right;
@@ -516,13 +456,6 @@
     margin: 0 14px 8px 0;
   }
 
-  /* === CJK (Japanese) font fallback === */
-  /* The bundled webfonts are Latin-only (see #951). Without a CJK fallback,
-     Japanese text renders as tofu (□) in headless Chromium on any system
-     without a CJK system font (Linux/CI, minimal containers). The Latin brand
-     fonts are kept first so ASCII still uses Space Grotesk / DM Sans, then the
-     browser's per-glyph fallback picks the first installed CJK face for kana
-     and kanji. Mirrors the lang="ar" precedent above. */
   html[lang="ja"] body {
     font-family: var(--font-family), 'Hiragino Sans',
       'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'YuGothic', 'Noto Sans CJK JP',
@@ -540,11 +473,6 @@
       Meiryo, 'MS PGothic', sans-serif;
   }
 
-  /* === Simplified Chinese typography ===
-     Keep Latin-capable system fonts first for stable ATS extraction, then use
-     platform-native and open-source Simplified Chinese faces for Han glyphs.
-     Explicit line-breaking prevents mixed Chinese/English tokens and Chinese
-     punctuation from producing clipped or awkward PDF lines. */
   html[lang="zh-CN"] body,
   html[lang="zh"] body {
     font-family: var(--font-family), 'PingFang SC',
@@ -574,12 +502,6 @@
       'Noto Sans SC', 'Source Han Sans SC', sans-serif;
   }
 
-  /* === Korean typography ===
-     modes/ko/ ships as a supported locale, but no rule matched html[lang="ko"],
-     so a Korean CV fell back to the Latin-only stack and Hangul rendered via
-     whatever the PDF engine happened to substitute. Same shape as the ja and
-     zh blocks above: Latin-capable faces first for stable ATS extraction, then
-     platform-native and open-source Korean faces for Hangul glyphs. */
   html[lang="ko"] body {
     font-family: var(--font-family), 'Apple SD Gothic Neo',
       'Malgun Gothic', 'Noto Sans CJK KR',
@@ -601,16 +523,6 @@
       'Noto Sans KR', 'Nanum Gothic', sans-serif;
   }
 
-  /* === Traditional Chinese typography ===
-     modes/zh-TW/ ships as a supported locale. html[lang="zh"] does not match
-     lang="zh-TW", so it needs its own rule — and it must use TC faces, not the
-     Simplified stack above, which substitutes the wrong glyph forms.
-     var(--font-family) leads (profile override / Latin :root default), then the
-     TC faces sit in the font list itself — NOT in var()'s fallback slot, which
-     is dead because :root always defines --font-family. Same shape as
-     templates/ats/cv-template.ats.html. (The ja/zh-CN/ko blocks above still use
-     the older `var(--font-family, …)` form and have the same dead-slot bug —
-     out of scope here, tracked separately.) */
   html[lang="zh-TW"] body {
     font-family: var(--font-family), 'PingFang TC',
       'Microsoft JhengHei', 'Noto Sans CJK TC',
@@ -784,7 +696,7 @@
     <li>Built a comparative biomechanics database covering <strong>30+ competitor products</strong> across three categories (YONEX, LI-NING and others) to inform product positioning and the R&amp;D roadmap</li>
     <li>Defined pre-production functional specifications from test data — structural stiffness, cushioning material, durability — keeping design intent aligned with measured performance</li>
     <li>Led design and delivery of the <strong>&quot;5S Racket Expert System&quot;</strong>, a consumer-facing decision support product combining individualized assessment logic, purchase recommendation and education</li>
-    <li><strong>Introduced advanced material technology</strong> through a production bottleneck</li>
+    <li><strong>Introduced advanced material technology</strong> to break through a production bottleneck</li>
   </ul>
 </div>
   </div>
@@ -798,7 +710,7 @@
     <div class="edu-year">2010</div>
   </div>
   <div class="edu-location">Taipei, Taiwan</div>
-  <div class="edu-desc">Thesis: The Effects of Badminton Racket Stiffness and Balance Point on Swing Speed and Shuttlecock Speed Performance (不同羽球拍勁度與平衡點對於揮拍速度及球速表現之影響)</div>
+  <div class="edu-desc">Thesis: The Effects of Badminton Racket Stiffness and Balance Point on Swing Speed and Shuttlecock Speed Performance<br>(不同羽球拍勁度與平衡點對於揮拍速度及球速表現之影響)</div>
 </div>
   <div class="edu-item">
   <div class="edu-header">
@@ -816,9 +728,9 @@
     <div class="skills-grid">
 <div class="skill-item"><span class="skill-category">Biomechanics &amp; Assessment: </span>Force plate protocol design, CMJ / SCMJ / SJ / DJ testing, rate of force development, eccentric deceleration, asymmetry index, landing mechanics, dynamic postural control, functional movement assessment</div>
 <div class="skill-item"><span class="skill-category">Product: </span>Product specification, PRD authoring, NPI coordination, pricing, B2B service design, cross-functional delivery</div>
-<div class="skill-item"><span class="skill-category">Statistics &amp; Experimental Design - Hands-on: </span>Power analysis / sample size estimation, t-test, ANOVA, regression analysis, controlled test design, critical appraisal of published statistics</div>
-<div class="skill-item"><span class="skill-category">Data Tools - Hands-on: </span>Google Sheets QUERY dashboards (primary) and Looker Studio, AI-assisted dynamic dashboard generation, exploratory analysis and output review in Python (pandas)</div>
-<div class="skill-item"><span class="skill-category">Data - Requirements &amp; Acceptance: </span>Data requirements definition and acceptance criteria, classification model use-case definition, report system specification; implementation by the engineering team</div>
+<div class="skill-item"><span class="skill-category">Statistics &amp; Experimental Design (Hands-on): </span>Power analysis / sample size estimation, t-test, ANOVA, regression analysis, controlled test design, critical appraisal of published statistics</div>
+<div class="skill-item"><span class="skill-category">Data Tools (Hands-on): </span>Google Sheets QUERY dashboards (primary) and Looker Studio, AI-assisted dynamic dashboard generation, exploratory analysis and output review in Python (pandas)</div>
+<div class="skill-item"><span class="skill-category">Data Requirements &amp; Acceptance: </span>Data requirements definition and acceptance criteria, classification model use-case definition, report system specification; implementation by the engineering team</div>
 <div class="skill-item"><span class="skill-category">Languages: </span>Chinese (native), English (professional working proficiency)</div>
   </div>
   </div>
