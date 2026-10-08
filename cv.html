@@ -555,6 +555,13 @@
   html[lang="zh"] .section-title {
     letter-spacing: 0.03em;
   }
+  .headline { font-size: 13px; font-weight: 600; color: var(--accent-color); margin: -2px 0 8px; }
+  .kpis { display: flex; flex-wrap: wrap; margin: 12px 0 2px; border-top: 2px solid var(--accent-color); background: hsl(187 60% 96%); }
+  .kpi { flex: 1 1 120px; padding: 8px 10px 9px; }
+  .kpi + .kpi { border-left: 1px solid hsl(187 40% 85%); }
+  .kpi-num { display: block; font-size: 17px; font-weight: 700; color: var(--accent-color); line-height: 1.15; }
+  .kpi-label { display: block; font-size: 9.5px; color: #444; line-height: 1.3; margin-top: 2px; }
+  @media (max-width: 560px) { .kpi + .kpi { border-left: 0; } }
 </style>
 <link rel="alternate" hreflang="zh-Hant" href="cv.zh.html">
 <style>
@@ -572,13 +579,22 @@
   <!-- HEADER -->
   <div class="header">
     <h1>Stev Lin (林雅涵)</h1>
+    <div class="headline">Sports Biomechanist &amp; Assessment Product Lead</div>
     <div class="header-gradient"></div>
     <div class="contact-row">
-      <a href="mailto:stephlin.pr@gmail.com">stephlin.pr@gmail.com</a>
+      <a href="mailto:stevlin7517@gmail.com">stevlin7517@gmail.com</a>
+      <span class="separator">|</span>
+      <a href="https://linstev.github.io/stev-portfolio/">linstev.github.io/stev-portfolio</a>
       <span class="separator">|</span>
       <a href="https://www.linkedin.com/in/stev-lin-5167b473/">linkedin.com/in/stev-lin-5167b473</a>
       <span class="separator">|</span>
       <span>Taipei / New Taipei, Taiwan</span>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><span class="kpi-num">16 yrs</span><span class="kpi-label">Sports biomechanics, product and assessment</span></div>
+      <div class="kpi"><span class="kpi-num">10,000+</span><span class="kpi-label">Professional athlete assessment sessions</span></div>
+      <div class="kpi"><span class="kpi-num">120+</span><span class="kpi-label">Biomechanical metrics per force plate test</span></div>
+      <div class="kpi"><span class="kpi-num">½ day → 1 min</span><span class="kpi-label">Per-assessment report processing</span></div>
     </div>
   </div>
 
@@ -618,7 +634,7 @@
     <li>Accumulated <strong>10,000+ professional athlete assessment sessions</strong> since the lab opened in 2019</li>
     <li>Built the assessment-to-report workflow end to end — sensor capture, quality control, interpretation logic, report generation — cutting per-assessment processing from <strong>half a working day to 1 minute</strong></li>
     <li>Kept each report&#39;s claims inside what the measurement supports, separating athletic performance, fatigue monitoring, movement strategy and rehabilitation follow-up</li>
-    <li>Built the B2B commercial model and pricing for the assessment service and negotiated a partnership to terms</li>
+    <li>Built the B2B commercial model and pricing and negotiated a partnership to terms (~NT$500,000 annual contract value); it did not proceed after the company repositioned the lab as a non-revenue unit</li>
     <li>Directly managed a team of up to 5 (3 full-time, 2 part-time), including performance reviews</li>
   </ul>
 </div>
@@ -692,7 +708,7 @@
   <div class="job-location">Taipei, Taiwan</div>
   <ul>
     <li>Designed participant recruitment and led lab and human functional testing across rackets, strings and footwear; authored standardized test reports driving product improvement — <strong>grip force transmission, vibration damping, dynamic stability</strong></li>
-    <li>Standardized the play-test protocol into an SOP; authored <strong>50+ biomechanical test reports</strong>, supporting Korean national team equipment replacement and testing with Olympic-level badminton athletes</li>
+    <li>Standardized the play-test protocol into an SOP that <strong>cut the sample-to-revision iteration cycle from 1-2 months to 2 weeks</strong>; authored <strong>50+ biomechanical test reports</strong>, supporting Korean national team equipment replacement and testing with Olympic-level badminton athletes</li>
     <li>Built a comparative biomechanics database covering <strong>30+ competitor products</strong> across three categories (YONEX, LI-NING and others) to inform product positioning and the R&amp;D roadmap</li>
     <li>Defined pre-production functional specifications from test data — structural stiffness, cushioning material, durability — keeping design intent aligned with measured performance</li>
     <li>Led design and delivery of the <strong>&quot;5S Racket Expert System&quot;</strong>, a consumer-facing decision support product combining individualized assessment logic, purchase recommendation and education</li>

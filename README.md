@@ -29,4 +29,4 @@ The protocol is the execution plan for the PRD's first estimation phase; the PRD
 
 ## License
 
-Copyright (c) 2026 Stev Lin. All rights reserved. Viewing, linking, and downloading for personal reading and evaluation (for example hiring review) is permitted. Copying, modifying, or redistributing the contents requires written consent: stephlin.pr@gmail.com.
+Copyright (c) 2026 Stev Lin. All rights reserved. Viewing, linking, and downloading for personal reading and evaluation (for example hiring review) is permitted. Copying, modifying, or redistributing the contents requires written consent: stevlin7517@gmail.com.
