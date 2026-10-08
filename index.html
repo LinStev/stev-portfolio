@@ -5,16 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stev Lin — Portfolio</title>
 <meta name="description" content="Stev Lin (林雅涵): turning measurement and scientific evidence into product decisions. CV and portfolio documents.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%230d1117%27/%3E%3Cpath d=%27M7 22l5-12 5 8 3-5 5 9z%27 fill=%27%235fd0c5%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0a%27/%3E%3Cpath d=%27M7 22l5-12 5 8 3-5 5 9z%27 fill=%27%23d4ff3a%27/%3E%3C/svg%3E">
 <style>
+  /* 只用 local()：卡片限制「不引入外部資源」，所以窄體字取自系統內建字型，各平台退回順序如下 */
+  @font-face {
+    font-family: "Display";
+    font-weight: 800;
+    src: local("HelveticaNeue-CondensedBlack"), local("Helvetica Neue Condensed Black"),
+         local("HelveticaNeue-CondensedBold"), local("Helvetica Neue Condensed Bold"),
+         local("ArialNarrow-Bold"), local("Arial Narrow Bold"),
+         local("RobotoCondensed-Bold"), local("Roboto Condensed Bold"),
+         local("Impact");
+  }
   :root {
-    --bg: #0d1117;
-    --panel: #151b23;
-    --line: #262e38;
-    --ink: #e8edf2;
-    --muted: #9aa5b1;
-    --accent: #5fd0c5;
-    --accent-2: #8b7cf6;
+    --bg: #0a0a0a;
+    --panel: #141414;
+    --line: #2b2b2b;
+    --ink: #f3f3ee;
+    --muted: #a3a39c;
+    --volt: #d4ff3a;
+    --on-volt: #0a0a0a;
+    --display: "Display", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Impact, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -23,83 +36,167 @@
     font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
   }
   a { color: inherit; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 720px) { .wrap { padding: 0 40px; } }
 
   /* 語言切換：預設英文；JS 依 ?lang=、先前選擇、瀏覽器語言決定 */
   .t-zh { display: none; }
   html[data-lang="zh"] .t-en { display: none; }
   html[data-lang="zh"] .t-zh { display: inline; }
 
-  .langbar { display: flex; justify-content: flex-end; padding-top: 18px; }
-  .lang-btn { font: inherit; font-size: 13px; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; cursor: pointer; }
-  .lang-btn:hover { border-color: var(--accent); }
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .volt { color: var(--volt); }
 
-  header.top { padding: 40px 0 40px; }
-  .eyebrow { color: var(--accent); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; }
-  h1 { font-size: clamp(34px, 7vw, 56px); line-height: 1.08; margin: 0 0 6px; letter-spacing: -.02em; }
-  .zh-name { color: var(--muted); font-size: 18px; margin: 0 0 28px; }
-  .rule { height: 3px; width: 120px; border: 0; margin: 0 0 28px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
-  .headline { font-size: clamp(20px, 3.4vw, 27px); line-height: 1.35; max-width: 640px; margin: 0 0 18px; }
-  .intro { color: var(--muted); max-width: 640px; margin: 0; }
-  section { padding: 36px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 22px; font-weight: 600; }
-  .cards { display: grid; gap: 16px; grid-template-columns: 1fr; }
-  @media (min-width: 720px) { .cards { grid-template-columns: repeat(2, 1fr); } .cards .wide { grid-column: 1 / -1; } }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; display: flex; flex-direction: column; gap: 10px; }
-  .tag { font-size: 12px; color: var(--muted); letter-spacing: .06em; }
-  .card h3 { margin: 0; font-size: 19px; line-height: 1.35; text-wrap: balance; }
-  .card .sub { margin: 0; color: var(--muted); font-size: 15px; }
-  .card p.desc { margin: 4px 0 0; color: var(--ink); font-size: 15px; }
-  .links { margin-top: auto; padding-top: 12px; display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn { display: inline-block; text-decoration: none; font-size: 14px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #07201d; font-weight: 600; }
-  .btn:hover { border-color: var(--accent); }
-  .btn:focus-visible, .lang-btn:focus-visible, .social a:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; }
-  .note { color: var(--muted); font-size: 14px; margin: 18px 0 0; }
-  footer { padding: 36px 0 64px; border-top: 1px solid var(--line); }
-  .social { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-  .social a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; }
-  .social a:hover { border-color: var(--accent); }
-  .social svg { width: 20px; height: 20px; fill: currentColor; }
-  .legal { color: var(--muted); font-size: 13px; margin: 22px 0 0; }
+  /* 頂部列 */
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .topbar nav { display: flex; align-items: center; gap: 6px; }
+  .topbar nav a { text-decoration: none; padding: 8px 10px; color: var(--muted); }
+  .topbar nav a:hover { color: var(--ink); }
+  .lang-btn { font: inherit; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 8px 12px; cursor: pointer; }
+  .lang-btn:hover { border-color: var(--volt); color: var(--volt); }
+  @media (max-width: 559px) { .topbar nav a { display: none; } }
+
+  /* Hero：名字當主視覺，不另寫標語，避免新增未核准的文案 */
+  header.hero { display: grid; gap: 32px; padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 880px) { header.hero { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: end; gap: 48px; padding: 72px 0 80px; } }
+  .eyebrow { margin: 0 0 18px; }
+  h1 {
+    font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+    font-size: clamp(72px, 15vw, 168px); line-height: .86; letter-spacing: -.01em; margin: 0;
+  }
+  h1 .last { color: var(--volt); }
+  .zh-name { font-family: var(--display); font-weight: 800; font-size: clamp(22px, 3vw, 30px); color: var(--muted); margin: 14px 0 32px; letter-spacing: .12em; }
+  .headline { font-size: clamp(21px, 2.6vw, 28px); line-height: 1.3; max-width: 620px; margin: 0 0 16px; font-weight: 600; }
+  .intro { color: var(--muted); max-width: 620px; margin: 0; }
+  .motion { width: 100%; aspect-ratio: 4 / 5; max-height: 460px; border: 1px solid var(--line); background: var(--panel); display: block; }
+  @media (max-width: 879px) { .motion { aspect-ratio: 4 / 3; max-height: none; } }
+
+  /* 編號分段 */
+  section { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  @media (min-width: 880px) { section { padding: 80px 0; } }
+  .sec-head { display: flex; align-items: baseline; gap: 18px; margin: 0 0 32px; }
+  .sec-num { font-family: var(--display); font-weight: 800; font-stretch: condensed; font-size: clamp(40px, 6vw, 64px); line-height: 1; color: var(--volt); }
+  h2 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase; font-size: clamp(30px, 4.4vw, 48px); line-height: 1; margin: 0; letter-spacing: -.005em; }
+
+  /* 作品列：雜誌式條列取代卡片 */
+  .works { border-top: 1px solid var(--line); }
+  .work { display: grid; gap: 14px; padding: 28px 0; border-bottom: 1px solid var(--line); position: relative; }
+  @media (min-width: 880px) {
+    .work { grid-template-columns: 72px minmax(0, 1fr) 220px; gap: 32px; padding: 36px 0; }
+    .work .links { justify-content: flex-end; align-self: start; padding-top: 4px; }
+  }
+  .work::before { content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px; background: var(--volt); transition: width .25s ease; }
+  .work:hover::before, .work:focus-within::before { width: 100%; }
+  .idx { font-family: var(--display); font-weight: 800; font-stretch: condensed; font-size: 28px; line-height: 1; color: var(--muted); }
+  .work:hover .idx, .work:focus-within .idx { color: var(--volt); }
+  .tag { display: block; color: var(--muted); margin-bottom: 10px; }
+  .work h3 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase; margin: 0 0 6px; font-size: clamp(24px, 3vw, 34px); line-height: 1.05; text-wrap: balance; }
+  .work .sub { margin: 0 0 8px; color: var(--muted); font-size: 15px; }
+  .work p.desc { margin: 6px 0 0; font-size: 15px; max-width: 680px; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 11px 16px; border: 1px solid var(--line); color: var(--ink); }
+  .btn.primary { background: var(--volt); border-color: var(--volt); color: var(--on-volt); font-weight: 700; }
+  .btn:hover { border-color: var(--volt); }
+  .btn.primary:hover { background: var(--ink); border-color: var(--ink); }
+  .btn:focus-visible, .lang-btn:focus-visible, .social a:focus-visible, .topbar nav a:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
+  .note { color: var(--muted); font-size: 14px; margin: 14px 0 0; }
+  .note.pending { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; border-left: 2px solid var(--volt); padding-left: 10px; }
+  .works + .note { margin-top: 24px; max-width: 760px; }
+  .work .note.pending { align-self: start; margin: 4px 0 0; }
+  section:has(+ section.cta) { border-bottom: 0; }
+
+  /* 合作邀請：整塊螢光底 */
+  section.cta { background: var(--volt); color: var(--on-volt); border-bottom: 0; padding: 40px 24px; margin: 56px 0; }
+  @media (min-width: 880px) { section.cta { padding: 64px 56px; margin: 80px 0; } }
+  .cta .sec-num { color: var(--on-volt); }
+  .cta h2 { font-size: clamp(34px, 5.6vw, 64px); }
+  .cta p { max-width: 640px; margin: 0 0 28px; font-size: 17px; }
+  .cta .btn { border-color: var(--on-volt); color: var(--on-volt); }
+  .cta .btn.primary { background: var(--on-volt); color: var(--volt); }
+  .cta .btn:hover { background: var(--on-volt); color: var(--volt); }
+  .cta .btn:focus-visible { outline-color: var(--on-volt); }
+
+  footer { padding: 0 0 64px; }
+  .social { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .social a { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; padding: 12px 18px; border: 1px solid var(--line); font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .social a:hover { border-color: var(--volt); color: var(--volt); }
+  .social svg { width: 18px; height: 18px; fill: currentColor; }
+  .legal { color: var(--muted); margin: 32px 0 0; }
+
+  @media (prefers-reduced-motion: reduce) { .work::before { transition: none; } }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="langbar">
-    <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language / 切換語言">
-      <span class="t-en">中文</span><span class="t-zh">English</span>
-    </button>
+  <div class="topbar">
+    <span class="mono">Stev Lin <span class="volt">/</span> 林雅涵</span>
+    <nav aria-label="Sections">
+      <a class="mono" href="#work"><span class="t-en">Work</span><span class="t-zh">作品</span></a>
+      <a class="mono" href="#contact"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language / 切換語言">
+        <span class="t-en">中文</span><span class="t-zh">English</span>
+      </button>
+    </nav>
   </div>
 
   <main>
-  <header class="top">
-    <p class="eyebrow"><span class="t-en">Portfolio</span><span class="t-zh">作品集</span></p>
-    <h1>Stev Lin</h1>
-    <p class="zh-name">林雅涵</p>
-    <hr class="rule">
-    <p class="headline">
-      <span class="t-en">Turning measurement and scientific evidence into product decisions.</span>
-      <span class="t-zh">把量測與科學證據，轉化為產品決策。</span>
-    </p>
-    <p class="intro">
-      <span class="t-en">Head of Motion Science Lab at LP Support. Sixteen years turning measurement into a recommendation someone acts on — from badminton equipment R&amp;D to force plate assessment for clinical and athletic populations.</span>
-      <span class="t-zh">LP Support 動作科學實驗室主管。十六年來致力於把量測轉化為讓人能據以行動的建議——從羽球器材研發，到臨床與運動族群的測力板檢測。</span>
-    </p>
+  <header class="hero">
+    <div>
+      <p class="eyebrow mono"><span class="volt">01</span> / <span class="t-en">Portfolio</span><span class="t-zh">作品集</span></p>
+      <h1>Stev<br><span class="last">Lin</span></h1>
+      <p class="zh-name">林雅涵</p>
+      <p class="headline">
+        <span class="t-en">Turning measurement and scientific evidence into product decisions.</span>
+        <span class="t-zh">把量測與科學證據，轉化為產品決策。</span>
+      </p>
+      <p class="intro">
+        <span class="t-en">Motion Science Lab. I use force-plate assessment to turn measurement into decision support.</span>
+        <span class="t-zh">動作科學實驗室。以測力板檢測，把量測轉化為決策支援。</span>
+      </p>
+    </div>
+    <!-- 照片位：純裝飾的連續動作軌跡（仿連續攝影），刻意不畫座標軸或曲線，避免被讀成量測數據；有可公開照片時直接替換 -->
+    <svg class="motion" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+      <g stroke="#2b2b2b" stroke-width="1">
+        <line x1="0" y1="100" x2="400" y2="100"/><line x1="0" y1="200" x2="400" y2="200"/>
+        <line x1="0" y1="300" x2="400" y2="300"/><line x1="0" y1="400" x2="400" y2="400"/>
+        <line x1="100" y1="0" x2="100" y2="500"/><line x1="200" y1="0" x2="200" y2="500"/><line x1="300" y1="0" x2="300" y2="500"/>
+      </g>
+      <g fill="none" stroke="#f3f3ee" stroke-linecap="round">
+        <path d="M40 420 Q 200 40 360 420" stroke-width="1" stroke-dasharray="2 8" opacity=".5"/>
+      </g>
+      <g fill="#d4ff3a">
+        <circle cx="56" cy="384" r="5" opacity=".18"/>
+        <circle cx="94" cy="313" r="7" opacity=".28"/>
+        <circle cx="133" cy="264" r="9" opacity=".4"/>
+        <circle cx="171" cy="236" r="11" opacity=".55"/>
+        <circle cx="210" cy="231" r="13" opacity=".7"/>
+        <circle cx="248" cy="247" r="15" opacity=".85"/>
+        <circle cx="286" cy="285" r="17"/>
+      </g>
+      <g stroke="#d4ff3a" stroke-width="3" stroke-linecap="square">
+        <line x1="40" y1="440" x2="360" y2="440"/>
+      </g>
+    </svg>
   </header>
 
   <section aria-labelledby="work">
-    <h2 id="work"><span class="t-en">Selected work</span><span class="t-zh">精選作品</span></h2>
-    <div class="cards">
+    <div class="sec-head">
+      <span class="sec-num" aria-hidden="true">02</span>
+      <h2 id="work"><span class="t-en">Selected work</span><span class="t-zh">精選作品</span></h2>
+    </div>
+    <div class="works">
 
-      <article class="card wide">
-        <span class="tag">CV · 履歷</span>
-        <h3><span class="t-en">Curriculum Vitae</span><span class="t-zh">履歷</span></h3>
-        <p class="desc">
-          <span class="t-en">Two pages. Product specification, biomechanics, and B2B commercialization.</span>
-          <span class="t-zh">共兩頁。產品規格、生物力學與 B2B 商業化。</span>
-        </p>
+      <article class="work">
+        <span class="idx" aria-hidden="true">01</span>
+        <div>
+          <span class="tag mono">CV · 履歷</span>
+          <h3><span class="t-en">Curriculum Vitae</span><span class="t-zh">履歷</span></h3>
+          <p class="desc">
+            <span class="t-en">Two pages. Product specification, biomechanics, and B2B commercialization.</span>
+            <span class="t-zh">共兩頁。產品規格、生物力學與 B2B 商業化。</span>
+          </p>
+        </div>
         <div class="links">
           <a class="btn primary" href="docs/Stev_Lin_CV.pdf" data-href-en="docs/Stev_Lin_CV.pdf" data-href-zh="docs/Stev_Lin_CV_zh.pdf">
             <span class="t-en">Download PDF</span><span class="t-zh">下載 PDF</span>
@@ -110,62 +207,73 @@
         </div>
       </article>
 
-      <article class="card">
-        <span class="tag">
-          <span class="t-en">Product requirements · 12 pp · written in Traditional Chinese</span>
-          <span class="t-zh">產品需求文件 · 12 頁</span>
-        </span>
-        <h3>
-          <span class="t-en">From Single Report to Trackable Decision System</span>
-          <span class="t-zh">從單次報告到可追蹤的決策系統</span>
-        </h3>
-        <p class="sub">
-          <span class="t-en">MSL 檢測報告 v2.0 PRD</span>
-          <span class="t-zh">MSL 檢測報告 v2.0 PRD</span>
-        </p>
-        <p class="desc">
-          <span class="t-en">What to build, why, and what deliberately not to: a rule-based interpretation layer and longitudinal tracking that must clear measurement error before calling a change real.</span>
-          <span class="t-zh">決定要做什麼、為什麼做、以及刻意不做什麼：規則式判讀層與縱向追蹤，且變化必須先超過量測誤差才算數。</span>
-        </p>
-        <div class="links">
-          <a class="btn primary" href="docs/Stev_Lin_PRD_MSL_Report_v2.pdf">PDF</a>
-          <a class="btn" href="docs/PRD_MSL_Report_v2.md" download>Markdown</a>
+      <article class="work">
+        <span class="idx" aria-hidden="true">02</span>
+        <div>
+          <span class="tag mono">
+            <span class="t-en">Supporting document · Personal proposal · 12 pp · written in Traditional Chinese</span>
+            <span class="t-zh">佐證文件 · 個人提案 · 12 頁</span>
+          </span>
+          <h3>
+            <span class="t-en">From Single Report to Trackable Decision System</span>
+            <span class="t-zh">從單次報告到可追蹤的決策系統</span>
+          </h3>
+          <p class="sub">
+            <span class="t-en">MSL 檢測報告 v2.0 PRD</span>
+            <span class="t-zh">MSL 檢測報告 v2.0 PRD</span>
+          </p>
+          <p class="desc">
+            <span class="t-en">What to build, why, and what deliberately not to: a rule-based interpretation layer and longitudinal tracking that must clear measurement error before calling a change real.</span>
+            <span class="t-zh">決定要做什麼、為什麼做、以及刻意不做什麼：規則式判讀層與縱向追蹤，且變化必須先超過量測誤差才算數。</span>
+          </p>
         </div>
+        <p class="note pending"><span class="t-en">Public link temporarily removed pending release review.</span><span class="t-zh">公開連結暫時移除，待發布審查。</span></p>
       </article>
 
-      <article class="card">
-        <span class="tag">
-          <span class="t-en">Validation protocol · 14 pp · written in Traditional Chinese</span>
-          <span class="t-zh">驗證計畫書 · 14 頁</span>
-        </span>
-        <h3>
-          <span class="t-en">Test–Retest Reliability and Minimal Detectable Change</span>
-          <span class="t-zh">MSL 檢測指標之再測信度與最小可偵測變化</span>
-        </h3>
-        <p class="sub">
-          <span class="t-en">MSL 檢測指標再測信度與最小可偵測變化</span>
-          <span class="t-zh">Test–Retest Reliability and Minimal Detectable Change</span>
-        </p>
-        <p class="desc">
-          <span class="t-en">How to prove it can work: study design, sample-size estimation with its trade-offs stated, and a decision rule for which metrics may support individual-level change claims.</span>
-          <span class="t-zh">如何證明它做得到：研究設計、附上取捨的樣本數估算，以及哪些指標可支撐個人層級變化判定的決策規則。</span>
-        </p>
-        <div class="links">
-          <a class="btn primary" href="docs/Stev_Lin_Validation_Protocol_MSL.pdf">PDF</a>
-          <a class="btn" href="docs/Validation_Protocol_MSL_Reliability.md" download>Markdown</a>
+      <article class="work">
+        <span class="idx" aria-hidden="true">03</span>
+        <div>
+          <span class="tag mono">
+            <span class="t-en">Supporting document · Personal proposal · 14 pp · written in Traditional Chinese</span>
+            <span class="t-zh">佐證文件 · 個人提案 · 14 頁</span>
+          </span>
+          <h3>
+            <span class="t-en">Test–Retest Reliability and Minimal Detectable Change</span>
+            <span class="t-zh">MSL 檢測指標之再測信度與最小可偵測變化</span>
+          </h3>
+          <p class="sub">
+            <span class="t-en">MSL 檢測指標再測信度與最小可偵測變化</span>
+            <span class="t-zh">Test–Retest Reliability and Minimal Detectable Change</span>
+          </p>
+          <p class="desc">
+            <span class="t-en">How to prove it can work: study design, sample-size estimation with its trade-offs stated, and a decision rule for which metrics may support individual-level change claims.</span>
+            <span class="t-zh">如何證明它做得到：研究設計、附上取捨的樣本數估算，以及哪些指標可支撐個人層級變化判定的決策規則。</span>
+          </p>
         </div>
+        <p class="note pending"><span class="t-en">Public link temporarily removed pending release review.</span><span class="t-zh">公開連結暫時移除，待發布審查。</span></p>
       </article>
 
     </div>
-    <p class="note">
-      <span class="t-en">The two documents are a pair: the protocol is the execution plan for the PRD’s first estimation phase. Both are personal portfolio samples written as proposals — not company-approved plans — and contain no client or participant information. The protocol has not been submitted to any ethics committee.</span>
-      <span class="t-zh">兩份文件互為一組：驗證計畫書是 PRD 第一階段估計的執行計畫。兩者皆為個人作品集範例，以提案形式撰寫，並非公司核准之計畫，也不含任何客戶或受試者資訊。驗證計畫書尚未送交任何倫理審查委員會。</span>
-    </p>
+  </section>
+
+  <section class="cta" aria-labelledby="contact">
+    <div class="sec-head">
+      <span class="sec-num" aria-hidden="true">03</span>
+      <h2 id="contact"><span class="t-en">Hiring or project collaboration</span><span class="t-zh">招募與專案合作</span></h2>
+    </div>
+    <p><span class="t-en">For a role, a product decision, or a scoped validation question, get in touch with the context and decision you need to make.</span><span class="t-zh">無論是職務邀約、產品決策或範圍明確的驗證問題，請說明你需要做的決定與背景。</span></p>
+    <div class="links">
+      <a class="btn primary" href="mailto:stevlin7517@gmail.com"><span class="t-en">Email Stev</span><span class="t-zh">聯絡 Stev</span></a>
+      <a class="btn" href="https://www.linkedin.com/in/stev-lin-5167b473/" rel="me noopener" target="_blank">LinkedIn</a>
+    </div>
   </section>
   </main>
 
   <footer>
-    <h2><span class="t-en">Elsewhere</span><span class="t-zh">其他連結</span></h2>
+    <div class="sec-head">
+      <span class="sec-num" aria-hidden="true">04</span>
+      <h2><span class="t-en">Elsewhere</span><span class="t-zh">其他連結</span></h2>
+    </div>
     <div class="social">
       <a href="https://www.linkedin.com/in/stev-lin-5167b473/" rel="me noopener" target="_blank" aria-label="LinkedIn — Stev Lin">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
@@ -176,7 +284,7 @@
         Instagram
       </a>
     </div>
-    <p class="legal">
+    <p class="legal mono">
       <span class="t-en">© 2026 Stev Lin. All rights reserved.</span>
       <span class="t-zh">© 2026 Stev Lin. 保留所有權利。</span>
     </p>
