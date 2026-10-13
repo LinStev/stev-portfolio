@@ -53,7 +53,10 @@
   .case-head .eyebrow { margin: 0 0 18px; }
   h1 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
        font-size: clamp(34px, 8vw, 96px); line-height: .95; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
-  .lang-note { color: var(--muted); font-size: 14px; margin: 20px 0 0; border-left: 2px solid var(--volt); padding-left: 10px; }
+
+  .body-zh { display: none; }
+  html[data-lang="zh"] .body-en { display: none; }
+  html[data-lang="zh"] .body-zh { display: block; }
 
   /* 內文：窄欄好讀，標題沿用首頁的窄體 display 字型 */
   article.case { max-width: 760px; padding: 40px 0 24px; }
@@ -97,10 +100,9 @@
     <header class="case-head">
       <p class="eyebrow mono"><span class="volt">CASE-001</span> / <span class="t-en">Case</span><span class="t-zh">案例</span></p>
       <h1><span class="t-en">From Measurement to Decision</span><span class="t-zh">從量測到決策</span></h1>
-      <p class="lang-note t-zh">案例內文為英文原文，未翻譯。</p>
     </header>
 
-    <article class="case" lang="en">
+    <article class="case body-en" lang="en">
 <h2>What this case is</h2>
 <p>This is a method case about how to turn a measurement into a decision someone can act on. It uses a Motion Science Lab (MSL) context only as <strong>historical work context</strong>. It does not disclose an MSL report, participant record, internal rule table, screenshot, raw data, or operational metric.</p>
 <h2>Claim and role boundary</h2>
@@ -222,6 +224,128 @@ review, re-measurement, or a scoped next action
 <h2>Release boundary</h2>
 <p>This case contains no logo, screenshot, client or participant information, operational number, or internal rule threshold.</p>
     </article>
+    <article class="case body-zh" lang="zh-Hant">
+<h2>這個案例是什麼</h2>
+<p>這是一個方法案例，說明如何把一項量測轉成他人可以據以行動的決策。案例僅以 Motion Science Lab（MSL）的情境作為<strong>歷史工作脈絡</strong>，不揭露任何 MSL 報告、受試者紀錄、內部規則表、截圖、原始資料或營運指標。</p>
+<h2>主張與角色界線</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>素材</th>
+<th>標籤</th>
+<th>支持的內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>歷史工作脈絡</td>
+<td><strong>Actual work（實際工作）</strong></td>
+<td>Stev 曾在測力板檢測的工作情境中，需要判斷一項量測能代表什麼、不能代表什麼。與公司相關的具體範圍仍須經發布核准。</td>
+</tr>
+<tr>
+<td>本案例中的決策工作流程</td>
+<td><strong>Method explainer（方法解說）</strong></td>
+<td>一套可重複使用的做法，用來區分條件、觀察、判讀界線與下一步行動。這不是對公司已完成部署的描述。</td>
+</tr>
+<tr>
+<td>規則式判讀與縱向追蹤方向</td>
+<td><strong>Personal proposal（個人提案）</strong></td>
+<td>見於佐證 PRD 與驗證計畫書的提案。不是公司核准的路線圖、已發布功能或已完成研究。</td>
+</tr>
+</tbody>
+</table></div>
+<h2>決策問題</h2>
+<p>量測不會只因為精確或圖表清楚，就自動成為有用的產品成果。讀者仍需要知道：</p>
+<ol>
+<li>要做的是什麼決策？</li>
+<li>這項量測是在什麼條件下取得的？</li>
+<li>觀察到了什麼，且不加入缺乏依據的結論？</li>
+<li>哪些不確定性會改變判讀？</li>
+<li>最小且負責任的下一步行動是什麼？</li>
+</ol>
+<p>因此本案例從決策出發，而不是從指標清單出發。</p>
+<h2>方法：從量測到決策的工作流程</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>問題</th>
+<th>輸出界線</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 定義決策</td>
+<td>讀者必須選擇、排序、監測或延後的是什麼？</td>
+<td>在選擇指標之前，先寫明決策與對象。</td>
+</tr>
+<tr>
+<td>2. 檢查量測條件</td>
+<td>流程、族群、時間點與重複量測的條件，是否適合預期的比較？</td>
+<td>報告條件與缺口；不要把數字當成脫離脈絡的結果。</td>
+</tr>
+<tr>
+<td>3. 區分觀察與判讀</td>
+<td>哪些是直接呈現的，哪些只是假設或規則式推論？</td>
+<td>兩者分開標示。</td>
+</tr>
+<tr>
+<td>4. 檢查證據界線</td>
+<td>擬提出的結論是否超出量測誤差、效度證據或儀器的預期用途？</td>
+<td>證據不足以支持結論時，保留 <code>Unknown</code>。</td>
+</tr>
+<tr>
+<td>5. 選擇下一步</td>
+<td>應該複核、重測、調查，或明確不主張的是什麼？</td>
+<td>給出與證據相稱的行動，而不是診斷或預測。</td>
+</tr>
+</tbody>
+</table></div>
+<h2>範例決策架構</h2>
+<p>以下架構是<strong>個人提案</strong>，並非對現有 MSL 產品的說明。</p>
+<pre><code class="language-text">量測條件
+        ↓
+觀察與資料品質檢查
+        ↓
+明確的判讀規則與不確定性標示
+        ↓
+可供決策的摘要
+        ↓
+複核、重測，或範圍明確的下一步
+</code></pre>
+<p>此提案刻意不把測力板資料轉成傷害預測、醫療診斷或未加限定的全人表現分數。要主張有變化，必須先有處理量測誤差的證據計畫，才能稱之為有意義。</p>
+<h2>這個案例展示什麼</h2>
+<ul>
+<li>產品思考：從讀者需要做的決策出發。</li>
+<li>科學上的克制：維持量測、判讀與結果之間的區別。</li>
+<li>證據設計：在允許縱向變化主張之前，先明確要估計什麼。</li>
+<li>角色清楚：描述 Stev 的方法與提案工作，不把工程實作或公司核准歸給他。</li>
+</ul>
+<h2>本案例使用的來源</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>來源</th>
+<th>在本案例中的用途</th>
+<th>發布狀態</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs/PRD_MSL_Report_v2.md</code></td>
+<td>個人提案：以決策為導向的報告與明確的非目標</td>
+<td>已公開於本作品集。</td>
+</tr>
+<tr>
+<td><code>docs/Validation_Protocol_MSL_Reliability.md</code></td>
+<td>個人提案：信度、典型誤差與最小可偵測變化的證據</td>
+<td>已公開於本作品集。</td>
+</tr>
+</tbody>
+</table></div>
+<h2>發布界線</h2>
+<p>本案例不含 logo、截圖、客戶或受試者資訊、營運數字或內部規則閾值。</p>
+    </article>
 
     <div class="links">
       <a class="btn" href="index.html#work"><span class="t-en">← Back to work</span><span class="t-zh">← 回到作品</span></a>
@@ -258,7 +382,7 @@ review, re-measurement, or a scoped next action
 
   function apply(lang, remember) {
     root.setAttribute('data-lang', lang);
-    // 內文永遠是英文，lang 屬性只描述介面；內文區塊另標 en 供讀屏軟體使用
+    // 內文是中英兩份各自標 lang，這裡的 lang 只描述外框介面
     root.lang = lang === 'zh' ? 'zh-Hant' : 'en';
     document.title = TITLES[lang];
     document.getElementById('langBtn').setAttribute('aria-label', LABELS[lang]);
