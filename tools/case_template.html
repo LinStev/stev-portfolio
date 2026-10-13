@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{CASE_ID}} — {{TITLE_EN}} · Stev Lin</title>
+<meta name="description" content="{{CASE_ID}}: {{TITLE_EN}}. A portfolio case by Stev Lin.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0a%27/%3E%3Cpath d=%27M7 22l5-12 5 8 3-5 5 9z%27 fill=%27%23d4ff3a%27/%3E%3C/svg%3E">
+<style>
+  /* 只用 local()：不引入外部資源；樣式與首頁共用同一組設計 token */
+  @font-face {
+    font-family: "Display";
+    font-weight: 800;
+    src: local("HelveticaNeue-CondensedBlack"), local("Helvetica Neue Condensed Black"),
+         local("HelveticaNeue-CondensedBold"), local("Helvetica Neue Condensed Bold"),
+         local("ArialNarrow-Bold"), local("Arial Narrow Bold"),
+         local("RobotoCondensed-Bold"), local("Roboto Condensed Bold"),
+         local("Impact");
+  }
+  :root {
+    --bg: #0a0a0a; --panel: #141414; --line: #2b2b2b; --ink: #f3f3ee; --muted: #a3a39c;
+    --volt: #d4ff3a; --on-volt: #0a0a0a;
+    --display: "Display", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Impact, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 720px) { .wrap { padding: 0 40px; } }
+
+  .t-zh { display: none; }
+  html[data-lang="zh"] .t-en { display: none; }
+  html[data-lang="zh"] .t-zh { display: inline; }
+  html[data-lang="zh"] p.t-zh, html[data-lang="zh"] div.t-zh { display: block; }
+
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .volt { color: var(--volt); }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .topbar nav { display: flex; align-items: center; gap: 6px; }
+  .topbar nav a { text-decoration: none; padding: 8px 10px; color: var(--muted); }
+  .topbar nav a:hover { color: var(--ink); }
+  .lang-btn { font: inherit; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 8px 12px; cursor: pointer; }
+  .lang-btn:hover { border-color: var(--volt); color: var(--volt); }
+  .lang-btn:focus-visible, .topbar nav a:focus-visible, .btn:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
+
+  .case-head { padding: 48px 0 40px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 880px) { .case-head { padding: 72px 0 56px; } }
+  .case-head .eyebrow { margin: 0 0 18px; }
+  h1 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+       font-size: clamp(34px, 8vw, 96px); line-height: .95; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+
+  .body-zh { display: none; }
+  html[data-lang="zh"] .body-en { display: none; }
+  html[data-lang="zh"] .body-zh { display: block; }
+
+  /* 內文：窄欄好讀，標題沿用首頁的窄體 display 字型 */
+  article.case { max-width: 760px; padding: 40px 0 24px; }
+  article.case h2 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+       font-size: clamp(26px, 3.6vw, 36px); line-height: 1.05; margin: 48px 0 16px; color: var(--volt); }
+  article.case h2:first-child { margin-top: 0; }
+  article.case p, article.case li { font-size: 16px; }
+  article.case ul, article.case ol { padding-left: 1.3em; }
+  article.case li { margin: 4px 0; }
+  article.case strong { color: var(--ink); }
+  article.case code { font-family: var(--mono); font-size: .88em; background: var(--panel); border: 1px solid var(--line); padding: 1px 5px; }
+  article.case pre { background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--volt); padding: 16px 18px; overflow-x: auto; margin: 20px 0; }
+  article.case pre code { background: none; border: 0; padding: 0; font-size: 13px; line-height: 1.6; }
+  .tbl { overflow-x: auto; margin: 20px 0; border: 1px solid var(--line); }
+  .tbl table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14px; }
+  .tbl th, .tbl td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .tbl th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
+  .tbl tr:last-child td { border-bottom: 0; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px; padding: 24px 0 64px; }
+  .btn { display: inline-block; text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 11px 16px; border: 1px solid var(--line); color: var(--ink); }
+  .btn:hover { border-color: var(--volt); }
+  footer { padding: 24px 0 64px; border-top: 1px solid var(--line); }
+  .legal { color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="mono" href="index.html#work" style="text-decoration:none">Stev Lin <span class="volt">/</span> 林雅涵</a>
+    <nav aria-label="Page">
+      <a class="mono" href="index.html#work"><span class="t-en">← Back to work</span><span class="t-zh">← 回到作品</span></a>
+      <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language / 切換語言">
+        <span class="t-en">中文</span><span class="t-zh">English</span>
+      </button>
+    </nav>
+  </div>
+
+  <main>
+    <header class="case-head">
+      <p class="eyebrow mono"><span class="volt">{{CASE_ID}}</span> / <span class="t-en">Case</span><span class="t-zh">案例</span></p>
+      <h1><span class="t-en">{{TITLE_EN}}</span><span class="t-zh">{{TITLE_ZH}}</span></h1>
+    </header>
+
+    <article class="case body-en" lang="en">
+{{BODY_EN}}
+    </article>
+    <article class="case body-zh" lang="zh-Hant">
+{{BODY_ZH}}
+    </article>
+
+    <div class="links">
+      <a class="btn" href="index.html#work"><span class="t-en">← Back to work</span><span class="t-zh">← 回到作品</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <p class="legal mono">
+      <span class="t-en">© 2026 Stev Lin. All rights reserved.</span>
+      <span class="t-zh">© 2026 Stev Lin. 保留所有權利。</span>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var LABELS = { en: 'Switch to Chinese (中文)', zh: '切換為英文 (English)' };
+  var TITLES = { en: '{{CASE_ID}} — {{TITLE_EN}} · Stev Lin', zh: '{{CASE_ID}} — {{TITLE_ZH}} · 林雅涵 (Stev Lin)' };
+
+  // 與首頁相同：?lang= → 先前選擇 → 瀏覽器語言；儲存失敗退回英文
+  function pick() {
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'zh' || q === 'en') return q;
+    } catch (e) {}
+    try {
+      var s = localStorage.getItem('portfolio-lang');
+      if (s === 'zh' || s === 'en') return s;
+    } catch (e) {}
+    return ((navigator.language || '').toLowerCase().indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+
+  function apply(lang, remember) {
+    root.setAttribute('data-lang', lang);
+    // 內文是中英兩份各自標 lang，這裡的 lang 只描述外框介面
+    root.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    document.title = TITLES[lang];
+    document.getElementById('langBtn').setAttribute('aria-label', LABELS[lang]);
+    if (remember) { try { localStorage.setItem('portfolio-lang', lang); } catch (e) {} }
+  }
+
+  apply(pick(), false);
+  document.getElementById('langBtn').addEventListener('click', function () {
+    apply(root.getAttribute('data-lang') === 'zh' ? 'en' : 'zh', true);
+  });
+})();
+</script>
+</body>
+</html>
