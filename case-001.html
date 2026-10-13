@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CASE-001 — From Measurement to Decision · Stev Lin</title>
+<meta name="description" content="CASE-001: From Measurement to Decision. A portfolio case by Stev Lin.">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%230a0a0a%27/%3E%3Cpath d=%27M7 22l5-12 5 8 3-5 5 9z%27 fill=%27%23d4ff3a%27/%3E%3C/svg%3E">
+<style>
+  /* 只用 local()：不引入外部資源；樣式與首頁共用同一組設計 token */
+  @font-face {
+    font-family: "Display";
+    font-weight: 800;
+    src: local("HelveticaNeue-CondensedBlack"), local("Helvetica Neue Condensed Black"),
+         local("HelveticaNeue-CondensedBold"), local("Helvetica Neue Condensed Bold"),
+         local("ArialNarrow-Bold"), local("Arial Narrow Bold"),
+         local("RobotoCondensed-Bold"), local("Roboto Condensed Bold"),
+         local("Impact");
+  }
+  :root {
+    --bg: #0a0a0a; --panel: #141414; --line: #2b2b2b; --ink: #f3f3ee; --muted: #a3a39c;
+    --volt: #d4ff3a; --on-volt: #0a0a0a;
+    --display: "Display", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Impact, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif; }
+  a { color: inherit; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  @media (min-width: 720px) { .wrap { padding: 0 40px; } }
+
+  .t-zh { display: none; }
+  html[data-lang="zh"] .t-en { display: none; }
+  html[data-lang="zh"] .t-zh { display: inline; }
+  html[data-lang="zh"] p.t-zh, html[data-lang="zh"] div.t-zh { display: block; }
+
+  .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .volt { color: var(--volt); }
+
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .topbar nav { display: flex; align-items: center; gap: 6px; }
+  .topbar nav a { text-decoration: none; padding: 8px 10px; color: var(--muted); }
+  .topbar nav a:hover { color: var(--ink); }
+  .lang-btn { font: inherit; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 8px 12px; cursor: pointer; }
+  .lang-btn:hover { border-color: var(--volt); color: var(--volt); }
+  .lang-btn:focus-visible, .topbar nav a:focus-visible, .btn:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
+
+  .case-head { padding: 48px 0 40px; border-bottom: 1px solid var(--line); }
+  @media (min-width: 880px) { .case-head { padding: 72px 0 56px; } }
+  .case-head .eyebrow { margin: 0 0 18px; }
+  h1 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+       font-size: clamp(34px, 8vw, 96px); line-height: .95; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  .lang-note { color: var(--muted); font-size: 14px; margin: 20px 0 0; border-left: 2px solid var(--volt); padding-left: 10px; }
+
+  /* 內文：窄欄好讀，標題沿用首頁的窄體 display 字型 */
+  article.case { max-width: 760px; padding: 40px 0 24px; }
+  article.case h2 { font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+       font-size: clamp(26px, 3.6vw, 36px); line-height: 1.05; margin: 48px 0 16px; color: var(--volt); }
+  article.case h2:first-child { margin-top: 0; }
+  article.case p, article.case li { font-size: 16px; }
+  article.case ul, article.case ol { padding-left: 1.3em; }
+  article.case li { margin: 4px 0; }
+  article.case strong { color: var(--ink); }
+  article.case code { font-family: var(--mono); font-size: .88em; background: var(--panel); border: 1px solid var(--line); padding: 1px 5px; }
+  article.case pre { background: var(--panel); border: 1px solid var(--line); border-left: 2px solid var(--volt); padding: 16px 18px; overflow-x: auto; margin: 20px 0; }
+  article.case pre code { background: none; border: 0; padding: 0; font-size: 13px; line-height: 1.6; }
+  .tbl { overflow-x: auto; margin: 20px 0; border: 1px solid var(--line); }
+  .tbl table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 14px; }
+  .tbl th, .tbl td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .tbl th { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--panel); }
+  .tbl tr:last-child td { border-bottom: 0; }
+
+  .links { display: flex; flex-wrap: wrap; gap: 10px; padding: 24px 0 64px; }
+  .btn { display: inline-block; text-decoration: none; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 11px 16px; border: 1px solid var(--line); color: var(--ink); }
+  .btn:hover { border-color: var(--volt); }
+  footer { padding: 24px 0 64px; border-top: 1px solid var(--line); }
+  .legal { color: var(--muted); margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a class="mono" href="index.html#work" style="text-decoration:none">Stev Lin <span class="volt">/</span> 林雅涵</a>
+    <nav aria-label="Page">
+      <a class="mono" href="index.html#work"><span class="t-en">← Back to work</span><span class="t-zh">← 回到作品</span></a>
+      <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language / 切換語言">
+        <span class="t-en">中文</span><span class="t-zh">English</span>
+      </button>
+    </nav>
+  </div>
+
+  <main>
+    <header class="case-head">
+      <p class="eyebrow mono"><span class="volt">CASE-001</span> / <span class="t-en">Case</span><span class="t-zh">案例</span></p>
+      <h1><span class="t-en">From Measurement to Decision</span><span class="t-zh">從量測到決策</span></h1>
+      <p class="lang-note t-zh">案例內文為英文原文，未翻譯。</p>
+    </header>
+
+    <article class="case" lang="en">
+<h2>What this case is</h2>
+<p>This is a method case about how to turn a measurement into a decision someone can act on. It uses a Motion Science Lab (MSL) context only as <strong>historical work context</strong>. It does not disclose an MSL report, participant record, internal rule table, screenshot, raw data, or operational metric.</p>
+<h2>Claim and role boundary</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Material</th>
+<th>Label</th>
+<th>What it supports</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Historical work context</td>
+<td><strong>Actual work</strong></td>
+<td>Stev has worked in a force-plate assessment setting where a reader must decide what a measurement can and cannot mean. The company-specific scope remains subject to release approval.</td>
+</tr>
+<tr>
+<td>Decision workflow in this case</td>
+<td><strong>Method explainer</strong></td>
+<td>A reusable way to separate conditions, observations, interpretation limits, and next actions. It is not an account of a completed company deployment.</td>
+</tr>
+<tr>
+<td>Rule-based interpretation and longitudinal-tracking direction</td>
+<td><strong>Personal proposal</strong></td>
+<td>A proposal described in the supporting PRD and validation protocol. It is not a company-approved roadmap, released feature, or completed study.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>The decision problem</h2>
+<p>A measurement does not become a useful product outcome merely because it is precise or visually clear. The reader still needs to know:</p>
+<ol>
+<li>What decision is being made?</li>
+<li>Under what conditions was the measure collected?</li>
+<li>What was observed, without adding an unsupported conclusion?</li>
+<li>What uncertainty changes the interpretation?</li>
+<li>What is the smallest responsible next action?</li>
+</ol>
+<p>The case therefore starts with the decision, rather than a metric catalogue.</p>
+<h2>Method: measurement-to-decision workflow</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Question</th>
+<th>Output boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Define the decision</td>
+<td>What must the reader choose, prioritize, monitor, or defer?</td>
+<td>State the decision and audience before selecting metrics.</td>
+</tr>
+<tr>
+<td>2. Check measurement conditions</td>
+<td>Are protocol, population, timing, and repeated-measure conditions appropriate for the intended comparison?</td>
+<td>Report conditions and gaps; do not treat a number as context-free.</td>
+</tr>
+<tr>
+<td>3. Separate observation from interpretation</td>
+<td>What is directly shown, and what is only a hypothesis or rule-based inference?</td>
+<td>Label the two separately.</td>
+</tr>
+<tr>
+<td>4. Check the evidence boundary</td>
+<td>Does the proposed conclusion exceed measurement error, validity evidence, or the instrument's intended use?</td>
+<td>Retain <code>Unknown</code> where the evidence does not support a conclusion.</td>
+</tr>
+<tr>
+<td>5. Choose the next action</td>
+<td>What should be reviewed, measured again, investigated, or explicitly not claimed?</td>
+<td>Give an action that is proportionate to evidence, not a diagnosis or prediction.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Example decision architecture</h2>
+<p>The following architecture is a <strong>personal proposal</strong>, not a statement about an existing MSL product.</p>
+<pre><code class="language-text">measurement conditions
+        ↓
+observations and data-quality checks
+        ↓
+explicit interpretation rules and uncertainty labels
+        ↓
+decision-ready summary
+        ↓
+review, re-measurement, or a scoped next action
+</code></pre>
+<p>The proposal deliberately does not convert force-plate data into injury prediction, medical diagnosis, or an unqualified whole-person performance score. A change claim would require an evidence plan that addresses measurement error before it is called meaningful.</p>
+<h2>What the case demonstrates</h2>
+<ul>
+<li>Product framing: begin with the decision a reader needs to make.</li>
+<li>Scientific restraint: preserve the difference between measurement, interpretation, and outcome.</li>
+<li>Evidence design: specify what must be estimated before a longitudinal change claim is allowed.</li>
+<li>Role clarity: describe Stev's method and proposal work without assigning engineering implementation or company approval to him.</li>
+</ul>
+<h2>Sources used for this case</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Use in this case</th>
+<th>Release status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs/PRD_MSL_Report_v2.md</code></td>
+<td>Personal proposal for decision-oriented reporting and explicit non-goals</td>
+<td>Published on this portfolio.</td>
+</tr>
+<tr>
+<td><code>docs/Validation_Protocol_MSL_Reliability.md</code></td>
+<td>Personal proposal for reliability, typical error, and detectable-change evidence</td>
+<td>Published on this portfolio.</td>
+</tr>
+</tbody>
+</table></div>
+<h2>Release boundary</h2>
+<p>This case contains no logo, screenshot, client or participant information, operational number, or internal rule threshold.</p>
+    </article>
+
+    <div class="links">
+      <a class="btn" href="index.html#work"><span class="t-en">← Back to work</span><span class="t-zh">← 回到作品</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <p class="legal mono">
+      <span class="t-en">© 2026 Stev Lin. All rights reserved.</span>
+      <span class="t-zh">© 2026 Stev Lin. 保留所有權利。</span>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var LABELS = { en: 'Switch to Chinese (中文)', zh: '切換為英文 (English)' };
+  var TITLES = { en: 'CASE-001 — From Measurement to Decision · Stev Lin', zh: 'CASE-001 — 從量測到決策 · 林雅涵 (Stev Lin)' };
+
+  // 與首頁相同：?lang= → 先前選擇 → 瀏覽器語言；儲存失敗退回英文
+  function pick() {
+    try {
+      var q = new URLSearchParams(location.search).get('lang');
+      if (q === 'zh' || q === 'en') return q;
+    } catch (e) {}
+    try {
+      var s = localStorage.getItem('portfolio-lang');
+      if (s === 'zh' || s === 'en') return s;
+    } catch (e) {}
+    return ((navigator.language || '').toLowerCase().indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+
+  function apply(lang, remember) {
+    root.setAttribute('data-lang', lang);
+    // 內文永遠是英文，lang 屬性只描述介面；內文區塊另標 en 供讀屏軟體使用
+    root.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+    document.title = TITLES[lang];
+    document.getElementById('langBtn').setAttribute('aria-label', LABELS[lang]);
+    if (remember) { try { localStorage.setItem('portfolio-lang', lang); } catch (e) {} }
+  }
+
+  apply(pick(), false);
+  document.getElementById('langBtn').addEventListener('click', function () {
+    apply(root.getAttribute('data-lang') === 'zh' ? 'en' : 'zh', true);
+  });
+})();
+</script>
+</body>
+</html>
