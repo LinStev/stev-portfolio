@@ -609,6 +609,8 @@
     .topbar .brand { text-decoration: none; }
     .topbar .brand:hover { color: var(--volt); }
     .topbar nav { display: flex; align-items: center; gap: 8px; }
+    .nav-link { text-decoration: none; padding: 8px 10px; color: var(--muted); }
+    .nav-link:hover { color: var(--ink); }
     .pdf-btn, .lang-toggle { text-decoration: none; padding: 8px 12px; border: 1px solid var(--line); color: var(--ink); }
     .pdf-btn { background: var(--volt); border-color: var(--volt); color: var(--on-volt); font-weight: 700; }
     .pdf-btn:hover { background: var(--ink); border-color: var(--ink); }
@@ -695,6 +697,7 @@
 <div class="topbar">
   <a class="brand mono" href="index.html?lang=zh">Stev Lin <span class="volt">/</span> 林雅涵</a>
   <nav aria-label="CV">
+    <a class="nav-link mono" href="index.html?lang=zh">作品集</a>
     <a class="pdf-btn mono" href="docs/Stev_Lin_CV_zh.pdf">下載 PDF</a>
     <a class="lang-toggle mono" href="cv.html" hreflang="en" lang="en">English</a>
   </nav>

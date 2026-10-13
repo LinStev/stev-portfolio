@@ -54,7 +54,7 @@
   .topbar nav a:hover { color: var(--ink); }
   .lang-btn { font: inherit; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ink); background: transparent; border: 1px solid var(--line); border-radius: 0; padding: 8px 12px; cursor: pointer; }
   .lang-btn:hover { border-color: var(--volt); color: var(--volt); }
-  @media (max-width: 559px) { .topbar nav a { display: none; } }
+  @media (max-width: 559px) { .topbar nav a { display: none; } .topbar nav a.nav-cv { display: inline-block; } }
 
   /* Hero：名字當主視覺，不另寫標語，避免新增未核准的文案 */
   header.hero { display: grid; gap: 32px; padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
@@ -134,6 +134,7 @@
     <nav aria-label="Sections">
       <a class="mono" href="#work"><span class="t-en">Work</span><span class="t-zh">作品</span></a>
       <a class="mono" href="#contact"><span class="t-en">Contact</span><span class="t-zh">聯絡</span></a>
+      <a class="mono nav-cv" href="cv.html" data-href-en="cv.html" data-href-zh="cv.zh.html"><span class="t-en">CV</span><span class="t-zh">履歷</span></a>
       <button type="button" class="lang-btn" id="langBtn" aria-label="Switch language / 切換語言">
         <span class="t-en">中文</span><span class="t-zh">English</span>
       </button>
