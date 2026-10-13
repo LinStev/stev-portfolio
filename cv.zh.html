@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>林雅涵 (Stev Lin) — 履歷</title>
 <style>
+@media print {
+
   
   :root {
     --accent-color: hsl(187 74% 32%);
@@ -562,17 +564,141 @@
   .kpi-num { display: block; font-size: 17px; font-weight: 700; color: var(--accent-color); line-height: 1.15; }
   .kpi-label { display: block; font-size: 9.5px; color: #444; line-height: 1.3; margin-top: 2px; }
   @media (max-width: 560px) { .kpi + .kpi { border-left: 0; } }
+
+}
 </style>
 <link rel="alternate" hreflang="en" href="cv.html">
 <style>
-  .lang-toggle { position: fixed; top: 12px; right: 14px; z-index: 10; font: 600 12px/1 -apple-system, "Segoe UI", "PingFang TC", Arial, sans-serif;
-    padding: 8px 13px; border: 1px solid #c9d1d9; border-radius: 999px; background: #fff; color: #1f2937; text-decoration: none; }
-  .lang-toggle:hover, .lang-toggle:focus-visible { border-color: hsl(187 74% 32%); outline: none; }
-  @media print { .lang-toggle { display: none; } }
+  /* 螢幕版沿用首頁 Athletic editorial；上方原樣式已整段移進 @media print，列印輸出不變 */
+  @font-face {
+    font-family: "Display";
+    font-weight: 800;
+    src: local("HelveticaNeue-CondensedBlack"), local("Helvetica Neue Condensed Black"),
+         local("HelveticaNeue-CondensedBold"), local("Helvetica Neue Condensed Bold"),
+         local("ArialNarrow-Bold"), local("Arial Narrow Bold"),
+         local("RobotoCondensed-Bold"), local("Roboto Condensed Bold"),
+         local("Impact");
+  }
+  @media screen {
+    :root {
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --line: #2b2b2b;
+      --ink: #f3f3ee;
+      --muted: #a3a39c;
+      --volt: #d4ff3a;
+      --on-volt: #0a0a0a;
+      --display: "Display", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", Impact, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans TC", "PingFang TC", Arial, sans-serif;
+    }
+    a { color: inherit; }
+    .mono { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+    .volt { color: var(--volt); }
+
+    .topbar, .page { width: calc(100% - 40px); max-width: 1080px; margin: 0 auto; }
+    @media (min-width: 720px) { .topbar, .page { width: calc(100% - 80px); } }
+
+    /* 頂部列 */
+    .topbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .topbar .brand { text-decoration: none; }
+    .topbar .brand:hover { color: var(--volt); }
+    .topbar nav { display: flex; align-items: center; gap: 8px; }
+    .pdf-btn, .lang-toggle { text-decoration: none; padding: 8px 12px; border: 1px solid var(--line); color: var(--ink); }
+    .pdf-btn { background: var(--volt); border-color: var(--volt); color: var(--on-volt); font-weight: 700; }
+    .pdf-btn:hover { background: var(--ink); border-color: var(--ink); }
+    .lang-toggle:hover { border-color: var(--volt); color: var(--volt); }
+    .topbar a:focus-visible, .page a:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
+
+    /* 抬頭：名字當主視覺 */
+    .page { counter-reset: sec; padding-bottom: 64px; }
+    .header { padding: 48px 0 56px; border-bottom: 1px solid var(--line); }
+    @media (min-width: 880px) { .header { padding: 72px 0 80px; } }
+    .header h1 {
+      font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+      font-size: clamp(52px, 10vw, 128px); line-height: .9; letter-spacing: -.01em; margin: 0;
+    }
+    .headline { font-size: clamp(20px, 2.6vw, 28px); line-height: 1.3; font-weight: 600; margin: 20px 0 0; max-width: 760px; }
+    .header-gradient { width: 72px; height: 4px; background: var(--volt); margin: 24px 0; }
+    .contact-row { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-family: var(--mono); font-size: 12px; letter-spacing: .04em; }
+    .contact-row a { text-decoration: none; border-bottom: 1px solid var(--line); }
+    .contact-row a:hover { color: var(--volt); border-color: var(--volt); }
+    .separator { display: none; }
+    .kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 40px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    @media (min-width: 880px) { .kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    .kpi { padding: 18px 16px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .kpi-num { display: block; font-family: var(--display); font-weight: 800; font-stretch: condensed; font-size: clamp(28px, 4vw, 44px); line-height: 1; color: var(--volt); }
+    .kpi-label { display: block; margin-top: 10px; font-size: 14px; line-height: 1.4; color: var(--muted); }
+
+    /* 編號分段：序號由 CSS 產生，不改 CV 文字 */
+    .section { counter-increment: sec; padding: 56px 0; border-bottom: 1px solid var(--line); }
+    @media (min-width: 880px) { .section { padding: 80px 0; } }
+    .section-title {
+      display: flex; align-items: baseline; gap: 18px; margin: 0 0 32px;
+      font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase;
+      font-size: clamp(30px, 4.4vw, 48px); line-height: 1;
+    }
+    .section-title::before { content: counter(sec, decimal-leading-zero); color: var(--volt); font-size: clamp(40px, 6vw, 64px); }
+    .summary-text { font-size: clamp(17px, 1.9vw, 20px); line-height: 1.6; max-width: 820px; }
+    .summary-text strong { color: var(--volt); font-weight: 600; }
+    .competencies-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+    .competency-tag { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; padding: 10px 14px; border: 1px solid var(--line); }
+
+    /* 經歷：比照首頁作品列，桌機左欄放期間與地點 */
+    .job {
+      display: grid; gap: 4px; padding: 28px 0; border-top: 1px solid var(--line); position: relative;
+      grid-template-areas: "company" "role" "period" "loc" "list";
+    }
+    .job:last-child { border-bottom: 1px solid var(--line); }
+    @media (min-width: 880px) {
+      .job { grid-template-columns: 220px minmax(0, 1fr); column-gap: 32px; padding: 36px 0; grid-template-areas: "period company" "loc role" ". list"; }
+    }
+    .job::before { content: ""; position: absolute; left: 0; top: -1px; width: 0; height: 2px; background: var(--volt); transition: width .25s ease; }
+    .job:hover::before { width: 100%; }
+    .job-header { display: contents; }
+    .job-company { grid-area: company; font-family: var(--display); font-weight: 800; font-stretch: condensed; text-transform: uppercase; font-size: clamp(22px, 2.6vw, 30px); line-height: 1.1; }
+    .job-role { grid-area: role; font-weight: 600; }
+    .job-period, .job-location { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .job-period { grid-area: period; }
+    .job-location { grid-area: loc; }
+    @media (min-width: 880px) { .job-period { color: var(--volt); padding-top: 6px; } }
+    .job ul { grid-area: list; margin: 12px 0 0; padding: 0; list-style: none; max-width: 760px; }
+    .job li { position: relative; padding-left: 20px; margin: 8px 0; font-size: 15px; color: var(--muted); }
+    .job li::before { content: ""; position: absolute; left: 0; top: .78em; width: 8px; height: 2px; background: var(--volt); }
+    .job strong { color: var(--ink); font-weight: 700; }
+
+    .edu-item { padding: 24px 0; border-top: 1px solid var(--line); }
+    .edu-item:last-child { border-bottom: 1px solid var(--line); }
+    .edu-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .edu-title { font-weight: 700; font-size: 18px; line-height: 1.35; }
+    .edu-org { display: block; font-weight: 400; font-size: 15px; color: var(--muted); margin-top: 4px; }
+    .edu-year { font-family: var(--display); font-weight: 800; font-stretch: condensed; font-size: 28px; line-height: 1; color: var(--volt); }
+    .edu-location { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 8px; }
+    .edu-desc { margin-top: 12px; font-size: 15px; color: var(--muted); max-width: 760px; }
+
+    .skills-grid { display: grid; border-top: 1px solid var(--line); }
+    @media (min-width: 880px) { .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; } }
+    .skill-item { padding: 18px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--muted); }
+    .skill-category { display: block; margin-bottom: 6px; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+
+    @media (prefers-reduced-motion: reduce) { .job::before { transition: none; } }
+  }
+  @media print { .topbar { display: none; } }
 </style>
 </head>
 <body>
-<a class="lang-toggle" href="cv.html" hreflang="en" lang="en">English</a>
+<div class="topbar">
+  <a class="brand mono" href="index.html?lang=zh">Stev Lin <span class="volt">/</span> 林雅涵</a>
+  <nav aria-label="CV">
+    <a class="pdf-btn mono" href="docs/Stev_Lin_CV_zh.pdf">下載 PDF</a>
+    <a class="lang-toggle mono" href="cv.html" hreflang="en" lang="en">English</a>
+  </nav>
+</div>
 <div class="page">
 
   <!-- HEADER -->
